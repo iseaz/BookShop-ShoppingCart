@@ -4,7 +4,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { findDOMNode } from 'react-dom'
-import { Button, ControlLabel, FormControl, FormGroup, Panel, Well } from 'react-bootstrap'
+import {
+	Button,
+	Col,
+	ControlLabel,
+	DropdownButton,
+	FormControl,
+	FormGroup,
+	InputGroup,
+	MenuItem,
+	Panel,
+	Row,
+	Well
+} from 'react-bootstrap'
 import { deleteBooks, postBooks } from '../../actions/booksActions'
 
 class BooksForm extends Component {
@@ -34,6 +46,25 @@ class BooksForm extends Component {
 
 		return (
 			<Well>
+				<Row>
+					<Col>
+						<Panel>
+							<InputGroup>
+        						<FormControl type="text" />
+								<DropdownButton
+									componentClass={InputGroup.Button}
+									id="input-dropdown-addon"
+									title="Action">
+									<MenuItem key="1">Item</MenuItem>
+								</DropdownButton>
+							</InputGroup>
+						</Panel>
+					</Col>
+
+					<Col>
+						right
+					</Col>
+				</Row>
 				<Panel>
 					<FormGroup controlId="title">
 						<ControlLabel>Title</ControlLabel>

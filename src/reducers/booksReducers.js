@@ -1,19 +1,7 @@
 "use strict"
 
 const INITIAL_STATE = {
-	books: [
-		{
-			_id: 1,
-			title: 'book title',
-			description: 'book description',
-			price: 300
-		}, {
-			_id: 2,
-			title: 'book title2',
-			description: 'book description2',
-			price: 600
-		}
-	]
+	books: []
 }
 
 export const booksReducers = (state = INITIAL_STATE, action) => {
@@ -21,7 +9,7 @@ export const booksReducers = (state = INITIAL_STATE, action) => {
 		case 'GET_BOOKS':
 			return {
 				...state,
-				books: [...state.books]
+				books: [...action.payload]
 			}
 		
 		case 'POST_BOOK':

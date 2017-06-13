@@ -5,6 +5,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 import { browserHistory, hashHistory, IndexRoute, Route, Router } from 'react-router'
 
 import reducers from './reducers'
@@ -17,7 +18,7 @@ import Cart from './components/pages/cart'
 import BooksForm from './components/pages/booksForm'
 import Main from './main'
 
-const middleware = applyMiddleware(logger)
+const middleware = applyMiddleware(thunk, logger)
 const store = createStore(reducers, middleware)
 
 const Routes = (
