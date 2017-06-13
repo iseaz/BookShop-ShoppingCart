@@ -14,7 +14,24 @@ export const booksReducers = (state = INITIAL_STATE, action) => {
 		
 		case 'POST_BOOK':
 			return {
-				books: [...state.books, ...action.payload]
+				...state,
+				books: [...state.books, ...action.payload],
+				msg: 'Saved! Click to continue',
+				style: 'success'
+			}
+		
+		case 'POST_BOOK_REJECTED':
+			return {
+				...state,
+				msg: 'Please, try again',
+				style: 'danger'
+			}
+		
+		case 'RESET_BUTTON':
+			return {
+				...state,
+				msg: null,
+				style: 'primary'
 			}
 		
 		case 'DELETE_BOOK':
