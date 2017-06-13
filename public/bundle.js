@@ -12870,33 +12870,36 @@ var BooksForm = function (_Component) {
 							null,
 							_react2.default.createElement(
 								_reactBootstrap.FormGroup,
-								{ controlId: 'title' },
+								{ controlId: 'title', validationState: this.props.validation },
 								_react2.default.createElement(
 									_reactBootstrap.ControlLabel,
 									null,
 									'Title'
 								),
-								_react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Enter Title', ref: 'title' })
+								_react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Enter Title', ref: 'title' }),
+								_react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
 							),
 							_react2.default.createElement(
 								_reactBootstrap.FormGroup,
-								{ controlId: 'description' },
+								{ controlId: 'description', validationState: this.props.validation },
 								_react2.default.createElement(
 									_reactBootstrap.ControlLabel,
 									null,
 									'Description'
 								),
-								_react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Enter Description', ref: 'description' })
+								_react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Enter Description', ref: 'description' }),
+								_react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
 							),
 							_react2.default.createElement(
 								_reactBootstrap.FormGroup,
-								{ controlId: 'price' },
+								{ controlId: 'price', validationState: this.props.validation },
 								_react2.default.createElement(
 									_reactBootstrap.ControlLabel,
 									null,
 									'Price'
 								),
-								_react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Enter Price', ref: 'price' })
+								_react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Enter Price', ref: 'price' }),
+								_react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
 							),
 							_react2.default.createElement(
 								_reactBootstrap.Button,
@@ -12959,7 +12962,8 @@ var mapStateToProps = function mapStateToProps(state) {
 	return {
 		books: state.books.books,
 		msg: state.books.msg,
-		style: state.books.style
+		style: state.books.style,
+		validation: state.books.validation
 	};
 };
 
@@ -22530,11 +22534,57 @@ var BooksList = function (_Component) {
 				_react2.default.createElement(
 					_reactBootstrap.Row,
 					null,
+					_react2.default.createElement(
+						_reactBootstrap.Carousel,
+						null,
+						_react2.default.createElement(
+							_reactBootstrap.Carousel.Item,
+							null,
+							_react2.default.createElement('img', { width: 900, height: 300, alt: '900x300', src: '/images/home1.jpg' }),
+							_react2.default.createElement(
+								_reactBootstrap.Carousel.Caption,
+								null,
+								_react2.default.createElement(
+									'h3',
+									null,
+									'First slide label'
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+								)
+							)
+						),
+						_react2.default.createElement(
+							_reactBootstrap.Carousel.Item,
+							null,
+							_react2.default.createElement('img', { width: 900, height: 300, alt: '900x300', src: '/images/home2.jpg' }),
+							_react2.default.createElement(
+								_reactBootstrap.Carousel.Caption,
+								null,
+								_react2.default.createElement(
+									'h3',
+									null,
+									'Second slide label'
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+								)
+							)
+						)
+					)
+				),
+				_react2.default.createElement(
+					_reactBootstrap.Row,
+					{ style: { marginTop: '15px' } },
 					_react2.default.createElement(_cart2.default, null)
 				),
 				_react2.default.createElement(
 					_reactBootstrap.Row,
-					null,
+					{ style: { marginTop: '15px' } },
 					booksList
 				)
 			);
@@ -22575,6 +22625,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(46);
 
+var _redux = __webpack_require__(40);
+
+var _cartActions = __webpack_require__(95);
+
 var _menu = __webpack_require__(280);
 
 var _menu2 = _interopRequireDefault(_menu);
@@ -22601,6 +22655,11 @@ var Main = function (_Component) {
 	}
 
 	_createClass(Main, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.props.getCart();
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
@@ -22616,13 +22675,19 @@ var Main = function (_Component) {
 	return Main;
 }(_react.Component);
 
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	return (0, _redux.bindActionCreators)({
+		getCart: _cartActions.getCart
+	}, dispatch);
+};
+
 var mapStateToProps = function mapStateToProps(state) {
 	return {
 		totalQty: state.cart.totalQty
 	};
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(Main);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
 /***/ }),
 /* 257 */
@@ -24019,19 +24084,22 @@ var booksReducers = exports.booksReducers = function booksReducers() {
 			return _extends({}, state, {
 				books: [].concat(_toConsumableArray(state.books), _toConsumableArray(action.payload)),
 				msg: 'Saved! Click to continue',
-				style: 'success'
+				style: 'success',
+				validation: 'success'
 			});
 
 		case 'POST_BOOK_REJECTED':
 			return _extends({}, state, {
 				msg: 'Please, try again',
-				style: 'danger'
+				style: 'danger',
+				validation: 'error'
 			});
 
 		case 'RESET_BUTTON':
 			return _extends({}, state, {
 				msg: null,
-				style: 'primary'
+				style: 'primary',
+				validation: null
 			});
 
 		case 'DELETE_BOOK':
