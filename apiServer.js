@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/bookshop')
+// mongoose.connect('mongodb://localhost:27017/bookshop')
+mongoose.connect('mongodb://iseaz:1234@ds141108.mlab.com:41108/bookshop')
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, '#MongoDB - connection error'))
@@ -34,7 +35,7 @@ app.post('/cart', (req, res) => {
 
 	req.session.save(err => {
 		if (err) {
-			throw err
+			console.log(err)
 		}
 
 		res.json(req.session.cart)
@@ -54,7 +55,7 @@ app.post('/books', (req, res) => {
 
 	Books.create(book, (err, books) => {
 		if (err) {
-			throw err
+			console.log(err)
 		}
 
 		res.json(books)
@@ -64,7 +65,7 @@ app.post('/books', (req, res) => {
 app.get('/books', (req, res) => {
 	Books.find((err, books) => {
 		if (err) {
-			throw err
+			console.log(err)
 		}
 
 		res.json(books)
@@ -78,7 +79,7 @@ app.delete('/books/:_id', (req, res) => {
 
 	Books.remove(query, (err, books) => {
 		if (err) {
-			throw err
+			console.log(err)
 		}
 
 		res.json(books)
@@ -104,7 +105,7 @@ app.put('/books/:_id', (req, res) => {
 
 	Books.findOneAndUpdate(query, update, options, (err, books) => {
 		if (err) {
-			throw err
+			console.log(err)
 		}
 
 		res.json(books)
@@ -117,7 +118,7 @@ app.get('/images', (req, res) => {
 
 	fs.readdir(imgFolder, (err, files) => {
 		if (err) {
-			throw err
+			console.log(err)
 		}
 
 		const filesArr = []
@@ -134,7 +135,7 @@ app.get('/images', (req, res) => {
 
 app.listen(3002, (err) => {
 	if (err) {
-		throw err
+		console.log(err)
 	}
 
 	console.log('API Server is listening on http://localhost:3002')

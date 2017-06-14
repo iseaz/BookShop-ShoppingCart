@@ -6,6 +6,7 @@
     "start": "start node apiServer.js && node ./bin/www"
   },
   "devDependencies": {
+    "ejs": "^2.5.6",
     "nodemon": "^1.11.0",
     "redux-logger": "^3.0.6",
     "webpack": "^2.6.1"
