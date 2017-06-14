@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www & node apiServer.js"
+    "start": "node ./bin/www & node apiServer.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "devDependencies": {
+    "cross-env": "^5.0.1",
     "nodemon": "^1.11.0",
     "redux-logger": "^3.0.6",
     "webpack": "^2.6.1"
