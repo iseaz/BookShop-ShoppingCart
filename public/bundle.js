@@ -24888,7 +24888,7 @@ var Menu = function (_Component) {
 						_react2.default.createElement(
 							'a',
 							{ href: '/' },
-							'Redux Application'
+							'BookShop'
 						)
 					),
 					_react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
@@ -24896,20 +24896,6 @@ var Menu = function (_Component) {
 				_react2.default.createElement(
 					_reactBootstrap.Navbar.Collapse,
 					null,
-					_react2.default.createElement(
-						_reactBootstrap.Nav,
-						null,
-						_react2.default.createElement(
-							_reactBootstrap.NavItem,
-							{ eventKey: 1, href: '/about' },
-							'About'
-						),
-						_react2.default.createElement(
-							_reactBootstrap.NavItem,
-							{ eventKey: 2, href: '/contacts' },
-							'Contact Us'
-						)
-					),
 					_react2.default.createElement(
 						_reactBootstrap.Nav,
 						{ pullRight: true },
