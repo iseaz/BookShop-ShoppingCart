@@ -15,11 +15,6 @@ class Menu extends Component {
 				</Navbar.Header>
 
 				<Navbar.Collapse>
-					<Nav>
-						<NavItem eventKey={1} href="/about">About</NavItem>
-						<NavItem eventKey={2} href="/contacts">Contact Us</NavItem>
-					</Nav>
-
 					<Nav pullRight>
 						<NavItem eventKey={1} href="/admin">Admin</NavItem>
 						<NavItem eventKey={2} href="/cart">
