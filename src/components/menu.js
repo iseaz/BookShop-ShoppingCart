@@ -9,7 +9,7 @@ class Menu extends Component {
 			<Navbar inverse fixedTop>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="/">Redux Application</a>
+						<a href="/">BookShop</a>
 					</Navbar.Brand>
 					<Navbar.Toggle />
 				</Navbar.Header>
